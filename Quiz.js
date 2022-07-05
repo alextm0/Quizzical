@@ -9,7 +9,9 @@ import upperBlob from '../assets/upperBlob.png'
 
 function Quiz() {
   const [data, setData] = useState([])
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true)
+  const [score, setScore] = useState(null)
+  const [finalGame, setFinalGame] = useState(0)
 
   useEffect(() => {
     const apiLink = "https://opentdb.com/api.php?amount=5"
@@ -60,10 +62,11 @@ function Quiz() {
         return 0;
     })
 
-    let score = 0;
+    let current_score = 0;
     for(let i = 0; i < newArray.length; i++)
-      score += (newArray[i] === 1);
-    console.log(score)
+      current_score += (newArray[i] === 1);
+    setScore(current_score);
+    setFinalGame(1);
   }
 
   const questionArray = data.map((question, index) => {
@@ -72,7 +75,6 @@ function Quiz() {
 
   return (
     <div className="quiz">
-
       {
         isLoading ?
           <div className="quiz__loading">
@@ -81,9 +83,15 @@ function Quiz() {
         :
           <div className="quiz__header">
             { questionArray }
-            <button className="quiz__checkBtn" onClick={checkAnswers}> Check Answers </button>
+            <div className="quiz__footer">
+              {finalGame ? <p className='quiz__score'> You scored {score}/5 correct answers </p> : ""}
+              <button className="quiz__checkBtn" onClick={checkAnswers}> 
+                {finalGame ? "Try again" : "Check Answers"}
+              </button>
+            </div>
           </div>
       } 
+
       <img src={lowerBlob} className="lowerBlob" alt="upperBlob" />
       <img src={upperBlob} className="upperBlob" alt="upperBlob" />
     </div>

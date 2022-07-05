@@ -1,16 +1,28 @@
 .quiz {
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .quiz__loading {
   width: 100%;
   height: 100vh;
-  background-color: rgb(162, 108, 108);
+  background-color: #4D5B9E;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  color: white;
+}
+
+.quiz__footer {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  align-items: center;
+  color: var(--textBlue-color);
 }
 
 .quiz__header {
@@ -28,6 +40,11 @@
   background-color: var(--darkBlue-color);
   border-style: none;
   color: var(--white-color);
+}
+
+.quiz__score {
+  font-size: 1.5rem;
+  align-self: center;
 }
 
 .lowerBlob {
