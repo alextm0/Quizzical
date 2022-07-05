@@ -21,7 +21,7 @@ export default function App() {
   return (
     <div className="app">
       {
-        isHome ? <Home toggleIsHome={toggleIsHome} /> : <Quiz />
+        (!isHome) ? <Quiz /> : <Home toggleIsHome={toggleIsHome} />
       }
     </div>
   )
